@@ -223,10 +223,10 @@ INSERT INTO schedule (train_id, station_id, arrival_time, days_of_operation)
 VALUES (12632, 'MS', '07:00:00', 'Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday');
 
 UPDATE schedule
-SET DAY=1
-WHERE train_id = 12662
-AND station_id = 'MDU'
-AND days_of_operation = 'Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday';
+SET departure_time='08:42:00'
+WHERE train_id = 20666
+AND station_id = 'DG'
+
 
 
 
@@ -428,3 +428,83 @@ VALUES (12676, 'PER', '22:08:00', '22:10:00', 'Monday,Tuesday,Wednesday,Thursday
 INSERT INTO schedule (train_id, station_id, arrival_time, departure_time, days_of_operation,DAY)
 VALUES (12676, 'MAS', '22:50:00', '22:50:00', 'Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday',1);
 
+SELECT * FROM trains;
+
+INSERT INTO schedule (train_id, station_id, arrival_time, departure_time, days_of_operation,DAY)
+VALUES (20666, 'TEN', '06:00:00', '06:00:00', 'Monday,Wednesday,Thursday,Friday,Saturday,Sunday',1);
+
+INSERT INTO schedule (train_id, station_id, arrival_time, departure_time, days_of_operation,DAY)
+VALUES (20666, 'VPT', '07:13:00', '07:15:00', 'Monday,Wednesday,Thursday,Friday,Saturday,Sunday',1);
+
+INSERT INTO schedule (train_id, station_id, arrival_time, departure_time, days_of_operation,DAY)
+VALUES (20666, 'MDU', '07:50:00', '07:55:00', 'Monday,Wednesday,Thursday,Friday,Saturday,Sunday',1);
+
+INSERT INTO schedule (train_id, station_id, arrival_time, departure_time, days_of_operation,DAY)
+VALUES (20666, 'DG', '08:40:00', '08:42:00', 'Monday,Wednesday,Thursday,Friday,Saturday,Sunday',1);
+
+INSERT INTO schedule (train_id, station_id, arrival_time, departure_time, days_of_operation,DAY)
+VALUES (20666, 'TPJ', '09:50:00', '09:55:00', 'Monday,Wednesday,Thursday,Friday,Saturday,Sunday',1);
+
+INSERT INTO schedule (train_id, station_id, arrival_time, departure_time, days_of_operation,DAY)
+VALUES (20666, 'VM', '11:54:00', '11:56:00', 'Monday,Wednesday,Thursday,Friday,Saturday,Sunday',1);
+
+INSERT INTO schedule (train_id, station_id, arrival_time, departure_time, days_of_operation,DAY)
+VALUES (20666, 'TBM', '13:13:00', '13:15:00', 'Monday,Wednesday,Thursday,Friday,Saturday,Sunday',1);
+
+INSERT INTO schedule (train_id, station_id, arrival_time, departure_time, days_of_operation,DAY)
+VALUES (20666, 'MS', '13:50:00', '13:50:00', 'Monday,Wednesday,Thursday,Friday,Saturday,Sunday',1);
+
+SELECT train_id,station_id,arrival_time,departure_time,days_of_operation,day FROM schedule ORDER BY train_id,DAY,arrival_time;
+
+SELECT * from trains;
+
+SELECT train_id,station_id,arrival_time,departure_time,days_of_operation,day FROM schedule ORDER BY train_id,DAY,arrival_time;
+
+CREATE TABLE COACH
+(
+  COACH_ID VARCHAR(10) PRIMARY KEY,
+  COACH_TYPE  VARCHAR(30),
+  MAXIMUM_CAPACITY INT
+);
+
+INSERT INTO COACH VALUES('HA1','COMPOSITE AC ONE TIER/TWO-TIER',30);
+
+-- INSERT INTO COACH VALUES('D1','NON AC CHAIR CAR',75);
+
+-- INSERT INTO COACH VALUES('D2','NON AC CHAIR CAR',75);
+
+-- INSERT INTO COACH VALUES('D3','NON AC CHAIR CAR',75);
+
+INSERT INTO COACH VALUES('A1','AC TWO TIER',48)
+
+INSERT INTO COACH VALUES('A2','AC TWO TIER',48)
+
+INSERT INTO COACH VALUES('B1','AC THREE TIER',64)
+
+INSERT INTO COACH VALUES('B2','AC THREE TIER',64)
+
+INSERT INTO COACH VALUES('B3','AC THREE TIER',64)
+
+INSERT INTO COACH VALUES('B4','AC THREE TIER',64)
+
+INSERT INTO COACH VALUES('B5','AC THREE TIER',64)
+
+INSERT INTO COACH VALUES('B6','AC THREE TIER',64)
+
+SELECT * FROM COACH;
+
+INSERT INTO coach VALUES('S1','SLEEPER CLASS',72);
+
+INSERT INTO coach VALUES('S2','SLEEPER CLASS',72);
+
+INSERT INTO coach VALUES('S3','SLEEPER CLASS',72);
+
+INSERT INTO coach VALUES('S4','SLEEPER CLASS',72);
+
+INSERT INTO coach VALUES('S5','SLEEPER CLASS',72);
+
+INSERT INTO coach VALUES('S6','SLEEPER CLASS',72);
+
+INSERT INTO coach VALUES('S7','SLEEPER CLASS',72);
+
+INSERT INTO coach VALUES('S8','SLEEPER CLASS',72);
