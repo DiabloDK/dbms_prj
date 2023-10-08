@@ -1,5 +1,5 @@
 CREATE TABLE PASSENGER(
-    PASSENGER_ID VARCHAR(10),
+    PASSENGER_ID INT AUTO_INCREMENT PRIMARY KEY,
     FIRST_NAME VARCHAR(50) NOT NULL,
     LAST_NAME VARCHAR(50),
     GENDER VARCHAR(10) NOT NULL,
@@ -14,7 +14,7 @@ CREATE TABLE PASSENGER(
     AADHAR_NO BIGINT(12) NOT NULL
 );
 
-ALTER TABLE passenger ADD CONSTRAINT PK_PASSENGER PRIMARY KEY(PASSENGER_ID);
+--ALTER TABLE passenger ADD CONSTRAINT PK_PASSENGER PRIMARY KEY(PASSENGER_ID);
 
 ALTER TABLE passenger ADD CONSTRAINT UNI_MOBILE UNIQUE(MOBILE_NO);
 
@@ -561,3 +561,227 @@ INSERT INTO coach VALUES('C6','AC CHAIR CAR',75);
 INSERT INTO coach VALUES('C7','AC CHAIR CAR',75);
 
 INSERT INTO coach VALUES('E1','EXECUTIVE CHAIR CAR',45);
+
+INSERT INTO COACH VALUES('GS1','GENERAL SEATING COACH',99);
+
+INSERT INTO COACH VALUES('GS2','GENERAL SEATING COACH',99);
+
+INSERT INTO COACH VALUES('GS3','GENERAL SEATING COACH',99);
+
+INSERT INTO COACH VALUES('GS4','GENERAL SEATING COACH',99);
+
+SELECT * FROM coach;
+
+CREATE TABLE ASSIGNED_TO_TRAIN
+(
+  TRAIN_ID INT ,
+  COACH_ID  VARCHAR(10),
+  SEAT_ID INT,
+  FOREIGN KEY (TRAIN_ID) REFERENCES TRAINS(TRAIN_ID),
+  FOREIGN KEY (COACH_ID) REFERENCES COACH(COACH_ID)
+)
+
+ALTER TABLE ASSIGNED_TO_TRAIN ADD PRIMARY KEY(TRAIN_ID,COACH_ID,SEAT_ID);
+
+SELECT * FROM assigned_to_train;
+
+CREATE PROCEDURE InsertSeats(IN train_id INT, IN coach_id VARCHAR(10), IN max_counter INT)
+BEGIN
+  DECLARE counter INT DEFAULT 1;
+
+  WHILE counter <= max_counter DO
+    INSERT INTO ASSIGNED_TO_TRAIN (TRAIN_ID, COACH_ID, SEAT_ID)
+    VALUES (train_id, coach_id, counter);
+
+    SET counter = counter + 1;
+  END WHILE;
+END
+
+CALL InsertSeats(12632, 'A1', 48);
+CALL InsertSeats(12632,'A2',48);
+CALL InsertSeats(12632, 'B1', 64);
+CALL InsertSeats(12632, 'B2', 64);
+CALL InsertSeats(12632, 'B3', 64);
+CALL InsertSeats(12632, 'B4', 64);
+CALL InsertSeats(12632, 'B5', 64);
+CALL InsertSeats(12632, 'B6', 64);
+CALL InsertSeats(12632, 'S1', 72);
+CALL InsertSeats(12632, 'S2', 72);
+CALL InsertSeats(12632, 'S3', 72);
+CALL InsertSeats(12632, 'S4', 72);
+CALL InsertSeats(12632, 'S5', 72);
+CALL InsertSeats(12632, 'S6', 72);
+CALL InsertSeats(12632, 'S7', 72);
+CALL InsertSeats(12632, 'S8', 72);
+CALL InsertSeats(12632, 'HA1', 30);
+CALL InsertSeats(12632, 'UR1', 99);
+CALL InsertSeats(12632, 'UR2', 99);
+CALL InsertSeats(12632, 'UR3', 99);
+
+SELECT * FROM assigned_to_train ORDER BY TRAIN_ID;
+
+SELECT * FROM trains;
+
+CALL InsertSeats(12633, 'S1', 72);
+CALL InsertSeats(12633, 'S2', 72);
+CALL InsertSeats(12633, 'S3', 72);
+CALL InsertSeats(12633, 'S4', 72);
+CALL InsertSeats(12633, 'S5', 72);
+CALL InsertSeats(12633, 'S6', 72);
+CALL InsertSeats(12633, 'S7', 72);
+CALL InsertSeats(12633, 'S8', 72);
+CALL InsertSeats(12633,'S9',72)
+CALL InsertSeats(12633, 'A1', 48);
+CALL InsertSeats(12633,'A2',48);
+CALL InsertSeats(12633, 'B1', 64);
+CALL InsertSeats(12633, 'B2', 64);
+CALL InsertSeats(12633, 'B3', 64);
+CALL InsertSeats(12633, 'B4', 64);
+CALL InsertSeats(12633, 'H1', 24);
+CALL InsertSeats(12633, 'UR1', 99);
+
+CALL InsertSeats(12662, 'A1', 48);
+CALL InsertSeats(12662,'A2',48);
+CALL InsertSeats(12662, 'B1', 64);
+CALL InsertSeats(12662, 'B2', 64);
+CALL InsertSeats(12662, 'B3', 64);
+CALL InsertSeats(12662, 'B4', 64);
+CALL InsertSeats(12662, 'B5', 64);
+CALL InsertSeats(12662, 'B6', 64);
+CALL InsertSeats(12662, 'S1', 72);
+CALL InsertSeats(12662, 'S2', 72);
+CALL InsertSeats(12662, 'S3', 72);
+CALL InsertSeats(12662, 'S4', 72);
+CALL InsertSeats(12662, 'S5', 72);
+CALL InsertSeats(12662, 'S6', 72);
+CALL InsertSeats(12662, 'S7', 72);
+CALL InsertSeats(12662, 'S8', 72);
+CALL InsertSeats(12662, 'HA1', 30);
+CALL InsertSeats(12662, 'UR1', 99);
+CALL InsertSeats(12662, 'UR2', 99);
+CALL InsertSeats(12662, 'UR3', 99);
+
+
+CALL InsertSeats(12674, 'H1', 24);
+CALL InsertSeats(12674, 'A1', 48);
+CALL InsertSeats(12674, 'B1', 64);
+CALL InsertSeats(12674, 'B2', 64);
+CALL InsertSeats(12674, 'B3', 64);
+CALL InsertSeats(12674, 'B4', 64);
+CALL InsertSeats(12674, 'B5', 64);
+CALL InsertSeats(12674, 'B6', 64);
+CALL InsertSeats(12674, 'S1', 72);
+CALL InsertSeats(12674, 'S2', 72);
+CALL InsertSeats(12674, 'S3', 72);
+CALL InsertSeats(12674, 'S4', 72);
+CALL InsertSeats(12674, 'S5', 72);
+CALL InsertSeats(12674, 'S6', 72);
+CALL InsertSeats(12674, 'S7', 72);
+CALL InsertSeats(12674, 'S8', 72);
+CALL InsertSeats(12674, 'S9', 72);
+CALL InsertSeats(12674, 'HA1', 30);
+CALL InsertSeats(12674, 'UR1', 99);
+CALL InsertSeats(12674, 'UR2', 99);
+CALL InsertSeats(12674, 'UR3', 99);
+
+CALL InsertSeats(12676, 'GS1', 99);
+CALL InsertSeats(12676, 'GS4', 99);
+CALL InsertSeats(12676, 'GS3', 99);
+CALL InsertSeats(12676, 'GS2', 99);
+CALL InsertSeats(12676, 'C1', 75);
+CALL InsertSeats(12676, 'C2', 75);
+CALL InsertSeats(12676, 'D1', 75);
+CALL InsertSeats(12676, 'D2', 75);
+CALL InsertSeats(12676, 'D3', 75);
+CALL InsertSeats(12676, 'D4', 75);
+CALL InsertSeats(12676, 'D5', 75);
+CALL InsertSeats(12676, 'D6', 75);
+CALL InsertSeats(12676, 'D7', 75);
+CALL InsertSeats(12676, 'D8', 75);
+CALL InsertSeats(12676, 'D9', 75);
+CALL InsertSeats(12676, 'D10', 75);
+CALL InsertSeats(12676, 'D11', 75);
+CALL InsertSeats(12676, 'D12', 75);
+CALL InsertSeats(12676, 'D13', 75);
+
+
+CALL InsertSeats(20666, 'C1', 75);
+CALL InsertSeats(20666, 'C2', 75);
+CALL InsertSeats(20666, 'C3', 75);
+CALL InsertSeats(20666, 'C4', 75);
+CALL InsertSeats(20666, 'C5', 75);
+CALL InsertSeats(20666, 'C6', 75);
+CALL InsertSeats(20666, 'C7', 75);
+CALL InsertSeats(20666, 'E1', 45);
+
+select * FROM schedule ORDER BY train_id,DAY,arrival_time;
+
+ALTER TABLE schedule drop COLUMN station_sequence ;
+
+ALTER TABLE schedule
+ADD COLUMN station_sequence INT;
+
+UPDATE schedule ts
+INNER JOIN (
+    SELECT
+        train_id,
+        station_id,
+        arrival_time,
+        ROW_NUMBER() OVER (PARTITION BY train_id ORDER BY train_id,DAY,arrival_time) AS station_sequence
+    FROM
+        schedule
+    
+) t ON ts.train_id = t.train_id AND ts.station_id = t.station_id
+SET ts.station_sequence = t.station_sequence;
+
+SELECT * FROM stations;
+
+
+
+CREATE TABLE Booking (
+    BookingID INT AUTO_INCREMENT PRIMARY KEY,
+    PassengerID INT,
+    TrainNumber INT,
+    DateOfBooking DATE,
+    Fare DECIMAL(10, 2),
+    NO_OF_PASSENGERS INT,
+    BoardingPoint VARCHAR(50),
+    Destination VARCHAR(50),
+    FOREIGN KEY (PassengerID) REFERENCES Passenger(Passenger_ID),
+    FOREIGN KEY (TrainNumber) REFERENCES TRAINS(TRAIN_ID)
+);
+
+ALTER TABLE stations
+ADD UNIQUE INDEX StationName_UNIQUE (STATION_NAME);
+
+
+ALTER TABLE Booking
+ADD FOREIGN KEY (BoardingPoint) REFERENCES STATIONS(STATION_NAME);
+
+ALTER TABLE Booking
+ADD FOREIGN KEY (DESTINATION) REFERENCES STATIONS(STATION_NAME);
+
+CREATE TABLE SEAT_RESERVATION(
+  BookingID INT,
+  PASSENGERNAME VARCHAR(75),
+  GENDER VARCHAR(10),
+  AGE INT,
+  TRAIN_ID INT,
+  COACH_ID VARCHAR(10),
+  SEAT_ID INT,
+  FOREIGN KEY (BookingID) REFERENCES Booking(BookingID)
+
+);
+
+ALTER TABLE seat_reservation
+ADD FOREIGN KEY (TRAIN_ID) REFERENCES ASSIGNED_TO_TRAIN(TRAIN_ID)
+
+ALTER TABLE SEAT_RESERVATION
+ADD FOREIGN KEY (COACH_ID) REFERENCES ASSIGNED_TO_TRAIN(COACH_ID)
+
+CREATE INDEX idx_seat_id ON ASSIGNED_TO_TRAIN(SEAT_ID);
+
+SELECT * FROM assigned_to_train
+
+ALTER TABLE SEAT_RESERVATION
+ADD FOREIGN KEY (SEAT_ID) REFERENCES ASSIGNED_TO_TRAIN(SEAT_ID)
